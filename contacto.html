@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubaMax - Contacto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #f39c12;
+            --accent-color: #3498db;
+            --text-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .navbar-brand span::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            bottom: 5px;
+            right: -8px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 70%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 0.7rem 1.8rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
+        }
+        
+        .section-title {
+            position: relative;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 800;
+            font-size: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            margin: 1.2rem auto;
+            border-radius: 5px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            max-width: 800px;
+            margin: -2.5rem auto 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .bg-light-subtle {
+            background-color: #f9fafb;
+        }
+        
+        .contact-info-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #fef5f4;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1060;
+        }
+        
+        .custom-toast {
+            background-color: white;
+            color: var(--text-color);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease;
+            border-left: 5px solid var(--primary-color);
+            width: 300px;
+        }
+        
+        .custom-toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .toast-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .toast-header strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .toast-body {
+            padding-top: 0.8rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(231, 76, 60, 0.25);
+        }
+        
+        label.form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        
+        .faq-question {
+            background-color: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: #e9ecef;
+        }
+        
+        .faq-question::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 1.2rem;
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        .accordion-item {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .accordion-button {
+            font-weight: 600;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        @media (max-width: 767.98px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cuba<span>Max</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="productos.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="como-funciona.html">Cómo Funciona</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="testimonios.html">Testimonios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Checkout.html">ChecKout</a>
+                </li>
+            </ul>
+            <div class="d-flex ms-3">
+                <a href="Checkout.html" class="btn btn-primary">Hacer Pedido</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Contact Section -->
+<section class="py-5 bg-light-subtle" id="contacto">
+    <div class="container">
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-subtitle">Estamos aquí para ayudarte con cualquier duda o consulta sobre nuestros servicios</p>
+        
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="contact-info-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h5>Email</h5>
+                    <p class="mb-0">cubamaxpaqueteria@gmail.com</p>
+                    <p class="text-muted small">Respondemos en 24 horas</p>
+                    <a href="mailto:cubamaxpaqueteria@gmail.com" class="btn btn-sm btn-outline-primary mt-3">Enviar email</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="contact-info-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h5>Teléfono</h5>
+                    <p class="mb-0">+1 (682) 293-4236</p>
+                    <p class="text-muted small">Lun-Vie: 5 AM - 12 PM (EST)</p>
+                    <a href="tel:+16822934236" class="btn btn-sm btn-outline-primary mt-3">Llamar ahora</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="contact-info-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <h5>Chat en Vivo</h5>
+                    <p class="mb-0">Soporte en tiempo real</p>
+                    <p class="text-muted small">24/7 para emergencias</p>
+                    <a href="https://wa.me/16822934236" target="_blank" class="btn btn-sm btn-outline-primary mt-3">Iniciar chat</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="card-title mb-4">Envíanos un Mensaje</h4>
+                        
+                        <form id="contact-form" action="https://formsubmit.co/cubamaxpaqueteria@gmail.com" method="POST">
+                            <input type="hidden" name="_subject" value="Nuevo mensaje de contacto">
+                            <input type="hidden" name="_next" value="https://tuweb.com/gracias.html">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="contact-name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="contact-name" name="name" placeholder="Tu nombre" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contact-email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="Tu email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact-subject" class="form-label">Asunto</label>
+                                <select class="form-select" id="contact-subject" name="subject" required>
+                                    <option value="">Seleccionar asunto...</option>
+                                    <option>Consulta general</option>
+                                    <option>Información de pedido</option>
+                                    <option>Estado de envío</option>
+                                    <option>Problemas con la entrega</option>
+                                    <option>Facturación</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="contact-message" class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="contact-message" name="message" rows="5" placeholder="¿Cómo podemos ayudarte?" required></textarea>
+                            </div>
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="newsletter-check" name="newsletter">
+                                <label class="form-check-label" for="newsletter-check">
+                                    Suscribirme al boletín de noticias para recibir ofertas y actualizaciones
+                                </label>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <p class="section-subtitle">Respuestas a las preguntas más comunes sobre nuestro servicio</p>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                ¿Cuánto tiempo tarda en llegar el envío a Cuba?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Los envíos regulares tardan entre 7 y 10 días hábiles en llegar a su destino en Cuba. El tiempo exacto puede variar según la ubicación específica en la isla y las condiciones logísticas del momento. Para zonas remotas, el tiempo de entrega podría extenderse ligeramente.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                ¿Qué pasa si no se entrega el pedido?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Ofrecemos una garantía de entrega del 100%. Si por alguna razón el pedido no es entregado, te reembolsaremos el importe completo o realizaremos un nuevo envío sin costo adicional, según tu preferencia. Nuestro equipo de atención al cliente te asistirá en todo el proceso.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                ¿A qué zonas de Cuba realizan envíos?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Realizamos envíos a todas las provincias y municipios de Cuba, incluyendo zonas rurales y alejadas. Para zonas muy remotas, podría haber un pequeño cargo adicional que será notificado antes de finalizar tu compra.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                ¿Cómo puedo rastrear mi pedido?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Una vez realizado el pedido, recibirás un número de seguimiento por correo electrónico. Con este número podrás rastrear tu envío en tiempo real a través de nuestra plataforma web o contactando con nuestro servicio de atención al cliente.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                ¿Puedo personalizar el contenido de mi pedido?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sí, ofrecemos la posibilidad de personalizar completamente el contenido de tu pedido. Puedes seleccionar productos individuales o elegir entre nuestros paquetes predefinidos y adaptarlos según las necesidades específicas de tus seres queridos en Cuba.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h4 class="mb-4">CubaMax</h4>
+                <p>Conectando familias a través de alimentos de calidad. Envíos seguros y rápidos a toda Cuba desde cualquier parte del mundo.</p>
+                <div class="social-links mt-3">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/16822934236" class="text-white"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4 mb-md-0">
+                <h5 class="mb-4">Enlaces</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Inicio</a></li>
+                    <li class="mb-2"><a href="productos.html" class="text-white text-decoration-none">Productos</a></li>
+                    <li class="mb-2"><a href="como-funciona.html" class="text-white text-decoration-none">Cómo Funciona</a></li>
+                    <li class="mb-2"><a href="testimonios.html" class="text-white text-decoration-none">Testimonios</a></li>
+                    <li><a href="contacto.html" class="text-white text-decoration-none">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h5 class="mb-4">Ayuda</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Preguntas Frecuentes</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Rastrear Pedido</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Términos y Condiciones</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Política de Privacidad</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Soporte</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5 class="mb-4">Newsletter</h5>
+                <p>Suscríbete para recibir noticias, ofertas especiales y actualizaciones sobre nuestros servicios.</p>
+                <form class="mt-3">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Tu email" required>
+                        <button class="btn btn-primary" type="submit">Enviar</button>
+                    </div>
+                </form>
+                <div class="mt-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" alt="Visa" height="30" class="me-2">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg" alt="MasterCard" height="30" class="me-2">
+                    <i class="fab fa-paypal fa-2x text-white me-2"></i>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4 bg-secondary">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 CubaMax. Todos los derechos reservados. Diseñado con <i class="fas fa-heart text-danger"></i> para las familias cubanas.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Toast Container -->
+<div class="toast-container"></div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script>
+    // Show toast function
+    function showToast(message, type = 'primary') {
+        const toastContainer = document.querySelector('.toast-container');
+        
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `custom-toast`;
+        
+        // Set border color based on type
+        let iconClass = 'fa-info-circle';
+        let borderColor = 'var(--primary-color)';
+        
+        switch(type) {
+            case 'success':
+                iconClass = 'fa-check-circle';
+                borderColor = 'var(--success-color)';
+                break;
+            case 'warning':
+                iconClass = 'fa-exclamation-triangle';
+                borderColor = 'var(--warning-color)';
+                break;
+            case 'danger':
+                iconClass = 'fa-times-circle';
+                borderColor = 'var(--primary-color)';
+                break;
+            case 'info':
+                iconClass = 'fa-info-circle';
+                borderColor = 'var(--info-color)';
+                break;
+        }
+        
+        toast.style.borderLeft = `5px solid ${borderColor}`;
+        
+        toast.innerHTML = `
+            <div class="toast-header">
+                <strong class="me-auto"><i class="fas ${iconClass} me-2"></i> CubaMax</strong>
+                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
+            </div>
+            <div class="toast-body">
+                ${message}
+            </div>
+        `;
+        
+        toastContainer.appendChild(toast);
+        
+        // Show toast
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+        
+        // Remove toast after 5 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                toast.remove();
+            }, 500);
+        }, 5000);
+    }
+    
+    // Contact form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        showToast('Mensaje enviado. Nos pondremos en contacto contigo pronto.', 'success');
+        this.submit();
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                
+                // Close navbar on mobile
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
+            }
+        });
+    });
+    
+    // Active nav links
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}` || 
+                    (current === 'contacto' && link.getAttribute('href') === 'contacto.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    });
+    
+    // Fixed navbar color change on scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('shadow-sm');
+        } else {
+            navbar.classList.remove('shadow-sm');
+        }
+    });
+</script>
+</body>
+</html>

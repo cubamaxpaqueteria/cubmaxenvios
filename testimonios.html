@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubaMax - Testimonios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #f39c12;
+            --accent-color: #3498db;
+            --text-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .navbar-brand span::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            bottom: 5px;
+            right: -8px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 70%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 0.7rem 1.8rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .section-title {
+            position: relative;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 800;
+            font-size: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            margin: 1.2rem auto;
+            border-radius: 5px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            max-width: 800px;
+            margin: -2.5rem auto 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .bg-light-subtle {
+            background-color: #f9fafb;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(231, 76, 60, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 5px solid #f8f9fa;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card .stars {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-card .text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .testimonial-card .author {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-card .location {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-carousel {
+            padding-bottom: 3rem;
+        }
+        
+        .testimonial-carousel .carousel-indicators {
+            bottom: 0;
+        }
+        
+        .testimonial-carousel .carousel-indicators [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .testimonial-carousel .carousel-indicators .active {
+            opacity: 1;
+        }
+        
+        @media (max-width: 767.98px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cuba<span>Max</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="productos.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="como-funciona.html">Cómo Funciona</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="testimonios.html">Testimonios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Checkout.html">ChecKout</a>
+                </li>
+            </ul>
+            <div class="d-flex ms-3">
+                <a href="Checkout.html" class="btn btn-primary">Hacer Pedido</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Testimonials Section -->
+<section class="py-5 bg-light-subtle" id="testimonios">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Lo Que Dicen Nuestros Clientes</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Historias reales de familias que han confiado en nuestro servicio para enviar alimentos a sus seres queridos en Cuba</p>
+        
+        <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="testimonial-card">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text">"El paquete de comida llegó en perfecto estado y en tiempo récord. Mi familia en Holguín está muy agradecida. Definitivamente volveré a utilizar este servicio una y otra vez."</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="María González">
+                                    <div class="ms-3">
+                                        <p class="author mb-0">María González</p>
+                                        <p class="location mb-0">Miami, EE.UU.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="testimonial-card">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text">"Excelente servicio, fácil de usar y muy confiable. Mi madre recibió todo en perfectas condiciones y me mantuvieron informado durante todo el proceso. Lo recomiendo 100% a todos los cubanos en el exterior."</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Rodríguez">
+                                    <div class="ms-3">
+                                        <p class="author mb-0">Carlos Rodríguez</p>
+                                        <p class="location mb-0">Madrid, España</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="testimonial-card">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="text">"Ya es la tercera vez que uso CubaMax para enviar alimentos a mi familia en La Habana. El servicio siempre ha sido puntual y los productos de buena calidad. ¡Gracias por existir!"</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Martínez">
+                                    <div class="ms-3">
+                                        <p class="author mb-0">Ana Martínez</p>
+                                        <p class="location mb-0">Nueva York, EE.UU.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="testimonial-card">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text">"Lo que más me gusta es la transparencia del servicio. Siempre me mantienen informado y hasta me enviaron fotos del momento de la entrega. Mi familia quedó encantada."</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Roberto Fernández">
+                                    <div class="ms-3">
+                                        <p class="author mb-0">Roberto Fernández</p>
+                                        <p class="location mb-0">Toronto, Canadá</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="testimonial-card">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text">"Increíble la calidad de los productos. Mi familia en Cienfuegos me comentó que todo llegó fresco y en perfecto estado. El paquete familiar es muy completo y vale cada centavo."</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/90.jpg" alt="Laura Díaz">
+                                    <div class="ms-3">
+                                        <p class="author mb-0">Laura Díaz</p>
+                                        <p class="location mb-0">México DF, México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="testimonial-card">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text">"Cuando tuve un problema con mi primer pedido, el servicio al cliente fue excepcional. Resolvieron rápidamente y hasta compensaron a mi familia con productos adicionales."</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Miguel Torres">
+                                    <div class="ms-3">
+                                        <p class="author mb-0">Miguel Torres</p>
+                                        <p class="location mb-0">Santiago, Chile</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="#" class="btn btn-outline-primary">Ver Más Testimonios</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h4 class="mb-4">CubaMax</h4>
+                <p>Conectando familias a través de alimentos de calidad. Envíos seguros y rápidos a toda Cuba desde cualquier parte del mundo.</p>
+                <div class="social-links mt-3">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4 mb-md-0">
+                <h5 class="mb-4">Enlaces</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Inicio</a></li>
+                    <li class="mb-2"><a href="productos.html" class="text-white text-decoration-none">Productos</a></li>
+                    <li class="mb-2"><a href="como-funciona.html" class="text-white text-decoration-none">Cómo Funciona</a></li>
+                    <li class="mb-2"><a href="testimonios.html" class="text-white text-decoration-none">Testimonios</a></li>
+                    <li><a href="contacto.html" class="text-white text-decoration-none">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h5 class="mb-4">Ayuda</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Preguntas Frecuentes</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Rastrear Pedido</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Términos y Condiciones</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Política de Privacidad</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Soporte</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5 class="mb-4">Newsletter</h5>
+                <p>Suscríbete para recibir noticias, ofertas especiales y actualizaciones sobre nuestros servicios.</p>
+                <form class="mt-3">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Tu email" required>
+                        <button class="btn btn-primary" type="submit">Enviar</button>
+                    </div>
+                </form>
+                <div class="mt-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" alt="Visa" height="30" class="me-2">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg" alt="MasterCard" height="30" class="me-2">
+                    <i class="fab fa-paypal fa-2x text-white me-2"></i>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4 bg-secondary">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 CubaMax. Todos los derechos reservados. Diseñado con <i class="fas fa-heart text-danger"></i> para las familias cubanas.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+    
+    // Active nav links
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        
+        document.querySelectorAll('.nav-link').forEach(link => {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
+    
+    // Fixed navbar color change on scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('shadow-sm');
+        } else {
+            navbar.classList.remove('shadow-sm');
+        }
+    });
+</script>
+</body>
+</html>

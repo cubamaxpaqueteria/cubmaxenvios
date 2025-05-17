@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubaMax - Productos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #f39c12;
+            --accent-color: #3498db;
+            --text-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .navbar-brand span::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            bottom: 5px;
+            right: -8px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 70%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 0.7rem 1.8rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .category-badge {
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            font-size: 1.2rem;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+        }
+        
+        .section-title {
+            position: relative;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 800;
+            font-size: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            margin: 1.2rem auto;
+            border-radius: 5px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            max-width: 800px;
+            margin: -2.5rem auto 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .product-image {
+            transition: transform 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        
+        .card:hover .product-image::before {
+            opacity: 1;
+        }
+        
+        .product-quick-view {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: white;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            z-index: 2;
+            opacity: 0;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card:hover .product-quick-view {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+        
+        .bg-light-subtle {
+            background-color: #f9fafb;
+        }
+        
+        .form-control, .form-select {
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(231, 76, 60, 0.25);
+        }
+        
+        label.form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+        
+        .list-group-item.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .category-filter {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .list-group-item {
+            padding: 0.8rem 1.25rem;
+            border-left: 0;
+            border-right: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .list-group-item:first-child {
+            border-top: 0;
+        }
+        
+        .list-group-item:last-child {
+            border-bottom: 0;
+        }
+        
+        .list-group-item:hover:not(.active) {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+        
+        /* Product Modal */
+        .product-modal .modal-content {
+            border-radius: 20px;
+            border: none;
+            overflow: hidden;
+        }
+        
+        .product-modal .modal-header {
+            border-bottom: none;
+            padding: 1.5rem 1.5rem 0;
+        }
+        
+        .product-modal .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .product-modal .modal-footer {
+            border-top: none;
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .product-modal-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        
+        .product-gallery {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-gallery-main {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        
+        .product-gallery-thumbs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .gallery-thumb {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-thumb.active {
+            border-color: var(--primary-color);
+        }
+        
+        .gallery-thumb:hover {
+            transform: scale(1.05);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ced4da;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            background-color: #f8f9fa;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            border: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Cart notification */
+        .cart-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-notification:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        /* Estilo especial para la página de vehículos */
+        body.vehiculos-page .cart-notification {
+            box-shadow: none;
+            background-color: transparent;
+            color: var(--primary-color);
+            width: auto;
+            height: auto;
+            border-radius: 0;
+            flex-direction: column;
+        }
+        
+        body.vehiculos-page .cart-count {
+            position: static;
+            margin-top: 5px;
+            background-color: var(--primary-color);
+        }
+        
+        /* Estilos para la navegación por categorías */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-nav-item {
+            margin: 0 10px 10px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .category-nav-item:hover, 
+        .category-nav-item.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* ========================================= */
+        /* MEJORAS PARA DISPOSITIVOS MÓVILES */
+        /* ========================================= */
+
+        @media (max-width: 767.98px) {
+            /* Ajustes generales para móviles */
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            /* Espaciado entre productos */
+            #products-container .col-md-4 {
+                margin-bottom: 30px;
+            }
+            
+            /* Reducir tamaño de las tarjetas */
+            .card {
+                margin-bottom: 20px;
+            }
+            
+            .card-img-top {
+                height: 180px;
+            }
+            
+            /* Mejorar el texto en móviles */
+            .card-title {
+                font-size: 1rem;
+                min-height: auto;
+            }
+            
+            .card-text {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+    /* Propiedades estándar para navegadores modernos */
+    display: -moz-box;
+    display: box;
+    line-clamp: 3;
+    box-orient: vertical;
+}
+            
+            /* Ajustar filtros para móviles */
+            .category-filter {
+                margin-bottom: 20px;
+            }
+            
+            /* Mejorar el modal en móviles */
+            .product-modal .modal-dialog {
+                margin: 10px;
+            }
+            
+            .product-modal .modal-body {
+                padding: 1rem;
+            }
+            
+            .product-gallery-main {
+                height: 200px;
+            }
+            
+            .gallery-thumb {
+                width: 50px;
+                height: 50px;
+            }
+            
+            /* Ajustar navegación de categorías */
+            .category-nav {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .category-nav-item {
+                white-space: nowrap;
+                margin: 0 5px;
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            /* Mejorar el footer en móviles */
+            footer .col-md-4, 
+            footer .col-md-2, 
+            footer .col-md-3 {
+                margin-bottom: 30px;
+            }
+            
+            /* Ajustar el botón de carrito */
+            .cart-notification {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .cart-count {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+            
+            /* Ajustar títulos */
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+                margin: -1.5rem auto 2rem;
+            }
+
+            /* Cambiar disposición de filtros y productos */
+            .row.mb-4 {
+                flex-direction: column;
+            }
+
+            .col-md-3, .col-md-9 {
+                width: 100%;
+                max-width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            /* Ajustes para pantallas muy pequeñas */
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .card-img-top {
+                height: 150px;
+            }
+            
+            .price {
+                font-size: 1.1rem;
+            }
+            
+            .btn-outline-primary, 
+            .btn-primary {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            /* Cambiar a una columna en móviles muy pequeños */
+            #products-container .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Ajustar el diseño del filtro */
+            .col-md-3 {
+                padding-right: 0;
+                padding-left: 0;
+            }
+
+            /* Ajustar modal para pantallas pequeñas */
+            .product-modal .modal-dialog {
+                margin: 5px;
+            }
+
+            .product-modal .modal-content {
+                border-radius: 10px;
+            }
+
+            .product-gallery-main {
+                height: 180px;
+            }
+
+            .gallery-thumb {
+                width: 40px;
+                height: 40px;
+            }
+
+            /* Mejorar botones en móviles */
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            /* Ajustar tamaño de fuente */
+            body {
+                font-size: 0.95rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Mejoras de usabilidad para móviles */
+        .btn, .form-control, .form-select, .list-group-item {
+            touch-action: manipulation;
+        }
+
+        /* Evitar zoom en inputs en iOS */
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            select:focus, textarea:focus, input:focus {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cuba<span>Max</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="productos.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="como-funciona.html">Cómo Funciona</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="testimonios.html">Testimonios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Checkout.html">Checkout</a>
+                </li>
+            </ul>
+            <div class="d-flex ms-3">
+                <a href="Checkout.html" class="btn btn-primary">Hacer Pedido</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Products Section -->
+<section class="py-5 bg-light-subtle" id="productos">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Nuestros Productos</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Amplia variedad de alimentos y productos de calidad para satisfacer las necesidades de tus seres queridos en Cuba</p>
+        
+        <!-- Navegación por categorías (versión móvil) -->
+        <div class="d-block d-md-none mb-4">
+            <div class="category-nav">
+                <a href="#" class="category-nav-item active" data-category="all">Todos</a>
+                <a href="#" class="category-nav-item" data-category="Básicos">Básicos</a>
+                <a href="#" class="category-nav-item" data-category="Carnes y Pescados">Carnes</a>
+                <a href="#" class="category-nav-item" data-category="Lácteos">Lácteos</a>
+                <a href="#" class="category-nav-item" data-category="Conservas">Conservas</a>
+                <a href="#" class="category-nav-item" data-category="Bebidas">Bebidas</a>
+                <a href="#" class="category-nav-item" data-category="Paquetes Especiales">Paquetes</a>
+                <a href="#" class="category-nav-item" data-category="Materiales de Construcción">Materiales</a>
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-3 d-none d-md-block" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-filter">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true" data-category="all">
+                            <i class="fas fa-th-list me-2"></i> Todas las categorías
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action" data-category="Básicos"><i class="fas fa-utensils me-2"></i> Básicos</a>
+                        <a href="#" class="list-group-item list-group-item-action" data-category="Carnes y Pescados"><i class="fas fa-drumstick-bite me-2"></i> Carnes y Pescados</a>
+                        <a href="#" class="list-group-item list-group-item-action" data-category="Lácteos"><i class="fas fa-cheese me-2"></i> Lácteos</a>
+                        <a href="#" class="list-group-item list-group-item-action" data-category="Conservas"><i class="fas fa-wine-bottle me-2"></i> Conservas</a>
+                        <a href="#" class="list-group-item list-group-item-action" data-category="Bebidas"><i class="fas fa-glass-whiskey me-2"></i> Bebidas</a>
+                        <a href="#" class="list-group-item list-group-item-action" data-category="Paquetes Especiales"><i class="fas fa-box me-2"></i> Paquetes Especiales</a>
+                        <a href="#" class="list-group-item list-group-item-action" data-category="Materiales de Construcción"><i class="fas fa-hammer me-2"></i> Materiales</a>
+                    </div>
+                    <div class="mt-4 p-3">
+                        <h5 class="mb-3">Filtrar por:</h5>
+                        <div class="mb-3">
+                            <label for="price-range" class="form-label">Precio</label>
+                            <input type="range" class="form-range" min="0" max="4000" id="price-range">
+                            <div class="d-flex justify-content-between">
+                                <span>$0</span>
+                                <span>$4000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="featured-filter">
+                            <label class="form-check-label" for="featured-filter">
+                                Solo destacados
+                            </label>
+                        </div>
+                        
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="sale-filter">
+                            <label class="form-check-label" for="sale-filter">
+                                En oferta
+                            </label>
+                        </div>
+                        
+                        <div class="d-grid mt-3">
+                            <button class="btn btn-sm btn-outline-primary" id="apply-filters">Aplicar filtros</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row" id="products-container">
+                    <!-- Los productos se cargarán aquí dinámicamente -->
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div>
+                        <span class="text-muted">Mostrando <span id="showing-products">0</span> de <span id="total-products">0</span> productos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cart Notification -->
+<div class="cart-notification" id="cartNotification" onclick="goToCheckout()">
+    <i class="fas fa-shopping-cart"></i>
+    <div class="cart-count" id="cartCount">0</div>
+</div>
+
+<!-- Product Modal -->
+<div class="modal fade product-modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Detalles del Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="product-gallery">
+                            <img src="" class="product-gallery-main" id="modal-product-img" alt="Producto">
+                            <div class="product-gallery-thumbs" id="modal-thumbnails">
+                                <!-- Las miniaturas se cargarán aquí dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 id="modal-product-title"></h3>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="stars me-2">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star-half-alt text-warning"></i>
+                            </div>
+                            <span class="text-muted">(127 valoraciones)</span>
+                        </div>
+                        <h3 class="price mb-4" id="modal-product-price"></h3>
+                        <p class="mb-4" id="modal-product-description"></p>
+                        
+                        <div class="mb-4">
+                            <h5>Contenido del paquete:</h5>
+                            <ul id="modal-product-content">
+                                <!-- El contenido del producto se cargará aquí dinámicamente -->
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Cantidad:</label>
+                            <div class="quantity-selector d-inline-flex">
+                                <button type="button" class="quantity-btn" onclick="updateModalQuantity(-1)">-</button>
+                                <input type="text" class="quantity-input" id="modal-quantity" value="1" readonly>
+                                <button type="button" class="quantity-btn" onclick="updateModalQuantity(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="addModalToCart()">Agregar al Carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h4 class="mb-4">CubaMax</h4>
+                <p>Conectando familias a través de alimentos de calidad. Envíos seguros y rápidos a toda Cuba desde cualquier parte del mundo.</p>
+                <div class="social-links mt-3">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4 mb-md-0">
+                <h5 class="mb-4">Enlaces</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Inicio</a></li>
+                    <li class="mb-2"><a href="productos.html" class="text-white text-decoration-none">Productos</a></li>
+                    <li class="mb-2"><a href="como-funciona.html" class="text-white text-decoration-none">Cómo Funciona</a></li>
+                    <li class="mb-2"><a href="testimonios.html" class="text-white text-decoration-none">Testimonios</a></li>
+                    <li><a href="contacto.html" class="text-white text-decoration-none">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h5 class="mb-4">Ayuda</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Preguntas Frecuentes</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Rastrear Pedido</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Términos y Condiciones</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Política de Privacidad</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Soporte</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5 class="mb-4">Newsletter</h5>
+                <p>Suscríbete para recibir noticias, ofertas especiales y actualizaciones sobre nuestros servicios.</p>
+                <form class="mt-3">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Tu email" required>
+                        <button class="btn btn-primary" type="submit">Enviar</button>
+                    </div>
+                </form>
+                <div class="mt-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" alt="Visa" height="30" class="me-2">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg" alt="MasterCard" height="30" class="me-2">
+                    <i class="fab fa-paypal fa-2x text-white me-2"></i>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4 bg-secondary">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 CubaMax. Todos los derechos reservados. Diseñado con <i class="fas fa-heart text-danger"></i> para las familias cubanas.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    // Variables globales para el modal
+    let currentModalProduct = null;
+    let currentModalPrice = 0;
+    let currentModalImage = '';
+    let modalQuantity = 1;
+    let allProducts = [];
+    let filteredProducts = [];
+    let currentCategory = 'all';
+
+    // Datos de los productos actualizados con las categorías y productos proporcionados
+    const productsData = [
+        // Básicos
+        {
+            id: 1,
+            name: "Saco de arroz blanco (25 kg)",
+            category: "Básicos",
+            price: 25,
+            image: "Saco-de-arroz-VIP-Rice-1.jpg",
+            description: "Arroz de grano largo de alta calidad, importado de Tailandia o Vietnam. Ideal para el consumo diario, con excelente textura y sabor. Cada grano se mantiene entero después de la cocción, perfecto para acompañar cualquier comida cubana.",
+            content: [
+                "25 kg de arroz blanco de grano largo",
+                "Empaque resistente y sellado al vacío",
+                "Alta calidad de importación",
+                "Larga duración (2 años de vida útil)"
+            ],
+            thumbnails: [
+                "Saco-de-arroz-VIP-Rice-1.jpg",
+                "Saco-de-arroz-VIP-Rice-1.jpg",
+                "Saco-de-arroz-VIP-Rice-1.jpg"
+            ],
+            featured: true
+        },
+        {
+            id: 2,
+            name: "Saco de arroz blanco (50 kg)",
+            category: "Básicos",
+            price: 59.99,
+            image: "qh1S6LqyQfrEAVestnROurKiFo2TnYZ9Gg4ZYEVG.jpeg",
+            description: "Arroz de grano largo de alta calidad en presentación de 50 kg. Ideal para familias numerosas o para tener reservas. Excelente textura y sabor, con granos que se mantienen enteros después de la cocción.",
+            content: [
+                "50 kg de arroz blanco de grano largo",
+                "Empaque resistente y sellado al vacío",
+                "Alta calidad de importación",
+                "Larga duración (2 años de vida útil)"
+            ],
+            thumbnails: [
+                "qh1S6LqyQfrEAVestnROurKiFo2TnYZ9Gg4ZYEVG.jpeg",
+                "qh1S6LqyQfrEAVestnROurKiFo2TnYZ9Gg4ZYEVG.jpeg",
+                "qh1S6LqyQfrEAVestnROurKiFo2TnYZ9Gg4ZYEVG.jpeg"
+            ]
+        },
+        {
+            id: 3,
+            name: "Saco de frijoles negros (25 kg)",
+            category: "Básicos",
+            price: 35,
+            image: "000090585l.jpg",
+            description: "Frijoles negros secos de primera calidad, esenciales para preparar el tradicional congrí cubano. Seleccionados cuidadosamente para garantizar uniformidad en tamaño y calidad. Alto contenido proteico y fibra dietética.",
+            content: [
+                "25 kg de frijoles negros secos",
+                "Empaque resistente y sellado",
+                "Sin impurezas ni piedras",
+                "Larga duración (18 meses de vida útil)"
+            ],
+            thumbnails: [
+                "000090585l.jpg",
+                "000090585l.jpg",
+                "000090585l.jpg"
+            ],
+            featured: true
+        },
+        {
+            id: 4,
+            name: "Saco de chícharos (25 kg)",
+            category: "Básicos",
+            price: 32,
+            image: "images (5).jpg",
+            description: "Chícharos secos de alta calidad, ricos en proteínas y fibra. Ideal para potajes y guisos tradicionales cubanos. Presentación en saco de 25 kg con producto seleccionado y limpio.",
+            content: [
+                "25 kg de chícharos secos",
+                "Empaque resistente y sellado",
+                "Alto contenido proteico",
+                "Larga duración (18 meses de vida útil)"
+            ],
+            thumbnails: [
+                "https://images.unsplash.com/photo-1594282417922-7b7c9f0b7b5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                "https://images.unsplash.com/photo-1594282417922-7b7c9f0b7b5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                "https://images.unsplash.com/photo-1594282417922-7b7c9f0b7b5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            ]
+        },
+        {
+            id: 5,
+            name: "Aceite de cosina(5 litros, caja de 6)",
+            category: "Básicos",
+            price: 49.99,
+            image: "Portada-6.jpg",
+            description: "Aceite de cosina puro de marcas reconocidas como Mazola o Crisol. Ideal para freír, cocinar y aderezar. Contiene vitamina E y ácidos grasos esenciales. Presentación económica en caja con 6 unidades de 5 litros cada una.",
+            content: [
+                "6 botellas de aceite  de 5 litros",
+                "Total: 30 litros de aceite",
+                "Alta resistencia al calor",
+                "Libre de colesterol y grasas trans"
+            ],
+            thumbnails: [
+                "Portada-6.jpg",
+                "Portada-6.jpg",
+                "Portada-6.jpg"
+            ]
+        },
+        {
+            id: 6,
+            name: "Aceite de cosina (1 litro, caja de 6)",
+            category: "Básicos",
+            price: 24.99,
+            image: "D_NQ_NP_875488-MLU76825693722_062024-O.webp",
+            description: "Aceite  puro en presentación familiar de 1 litro. Caja con 6 unidades para mayor economía. Ideal para freír, cocinar y aderezar. Contiene vitamina E y ácidos grasos esenciales.",
+            content: [
+                "6 botellas de aceite de 1 litro",
+                "Total: 6 litros de aceite",
+                "Alta resistencia al calor",
+                "Libre de colesterol y grasas trans"
+            ],
+            thumbnails: [
+                "D_NQ_NP_875488-MLU76825693722_062024-O.webp",
+                "D_NQ_NP_875488-MLU76825693722_062024-O.webp",
+                "D_NQ_NP_875488-MLU76825693722_062024-O.webp"
+            ]
+        },
+        {
+            id: 7,
+            name: "Harina de trigo (25 kg)",
+            category: "Básicos",
+            price: 24.99,
+            image: "981014514l.png",
+            description: "Harina de trigo multiusos para panadería y repostería. Ideal para preparar pan, pasteles, pizzas y otros productos horneados. Contiene gluten, enriquecida con vitaminas y minerales esenciales.",
+            content: [
+                "25 kg de harina de trigo envasada",
+                "Textura fina y uniforme",
+                "Alto contenido proteico",
+                "Empaque resistente y sellado"
+            ],
+            thumbnails: [
+                "981014514l.png",
+                "981014514l.png",
+                "981014514l.png"
+            ]
+        },
+        {
+            id: 8,
+            name: "Azúcar blanca (25 kg)",
+            category: "Básicos",
+            price: 22,
+            image: "Azucar-blanca-Paramonga-25-kg.webp",
+            description: "Azúcar blanca refinada en saco de 25 kg. Perfecta para endulzar bebidas, postres y todo tipo de preparaciones culinarias. Granos finos y uniformes que se disuelven fácilmente.",
+            content: [
+                "25 kg de azúcar blanca refinada",
+                "Empaque sellado al vacío",
+                "Granos finos y uniformes",
+                "Larga duración (2 años de vida útil)"
+            ],
+            thumbnails: [
+                "Azucar-blanca-Paramonga-25-kg.webp",
+                "Azucar-blanca-Paramonga-25-kg.webp",
+                "Azucar-blanca-Paramonga-25-kg.webp"
+            ]
+        },
+        {
+            id: 9,
+            name: "Azúcar morena (50 kg)",
+            category: "Básicos",
+            price: 50,
+            image: "10307.webp",
+            description: "Azúcar morena o turbinada en saco de 50 kg. Endulzante natural con melaza, ideal para postres y bebidas. Contiene minerales como calcio, potasio y magnesio.",
+            content: [
+                "50 kg de azúcar morena",
+                "Empaque sellado al vacío",
+                "Contiene melaza natural",
+                "Rica en minerales esenciales"
+            ],
+            thumbnails: [
+                "10307.webp",
+                "10307.webp",
+                "10307.webp"
+            ]
+        },
+        
+        // Carnes y Pescados
+        {
+            id: 10,
+            name: "Pollo congelado (caja de 40 lb)",
+            category: "Carnes y Pescados",
+            price: 45,
+            image: "images.jpg",
+            description: "Pollo congelado de alta calidad, marca Tyson o Pilgrim's. Presentación en caja de 40 lb (~18 kg) con piezas de piernas y muslos. Carne jugosa y tierna, rica en proteínas y baja en grasas.",
+            content: [
+                "40 lb (~18 kg) de pollo congelado",
+                "Piezas de piernas y muslos",
+                "Empacado al vacío para máxima frescura",
+                "Origen: Estados Unidos"
+            ],
+            thumbnails: [
+                "images.jpg",
+                "images.jpg",
+                "images.jpg"
+            ],
+            featured: true
+        },
+        {
+            id: 11,
+            name: "Atún enlatado (caja de 48 latas)",
+            category: "Carnes y Pescados",
+            price: 110,
+            image: "atun_1.webp",
+            description: "Atún enlatado en agua o aceite, marcas Van Camp's o Goya. Presentación en caja de 48 latas de 170 g cada una. Alto contenido de proteínas y omega-3, perfecto para ensaladas, sándwiches y platos principales.",
+            content: [
+                "48 latas de atún de 170 g cada una",
+                "Total: 8.16 kg de atún",
+                "En agua o aceite (a elección)",
+                "Alto contenido de proteínas y omega-3"
+            ],
+            thumbnails: [
+                "atun_1.webp",
+                "atun_1.webp",
+                "atun_1.webp"
+            ],
+            sale: true
+        },
+        {
+            id: 12,
+            name: "Picadillo de res  (caja de 12 unidades)",
+            category: "Carnes y Pescados",
+            price: 89.00,
+            image: "Picadillo-de-Res-500g-1.jpg",
+            description: "Picadillo de res en tuvos . Presentación en caja de 12 unidades de 740 g cada unidad . Carne de res molida precocida, lista para calentar y servir. Ideal para comidas rápidas y nutritivas.",
+            content: [
+                "12 unidades de picadillo de res de 740 g",
+                "Total: 8.16 kg de producto",
+                "Precocido y listo para calentar",
+                "Alto contenido proteico"
+            ],
+            thumbnails: [
+                "Picadillo-de-Res-500g-1.jpg",
+                "Picadillo-de-Res-500g-1.jpg",
+                "Picadillo-de-Res-500g-1.jpg"
+            ]
+        },
+        
+        // Lácteos
+        {
+            id: 13,
+            name: "Leche en polvo (caja de 12 bolsas)",
+            category: "Lácteos",
+            price: 65.00,
+            image: "images (1).jpg",
+            description: "Leche en polvo entera, marcas Nido o Klim. Presentación en caja con 12 bolsas de 1 kg cada una. Rica en calcio y vitaminas A y D. Fácil de preparar, solo agregar agua. Larga vida útil sin refrigeración.",
+            content: [
+                "12 bolsas de leche en polvo de 1 kg",
+                "Total: 12 kg de leche en polvo",
+                "Enriquecida con vitaminas A y D",
+                "Alto contenido de calcio"
+            ],
+            thumbnails: [
+                "images (1).jpg",
+                "images (1).jpg",
+                "images (1).jpg"
+            ],
+            featured: true
+        },
+        {
+            id: 14,
+            name: "Mantequilla (caja de 20 lb)",
+            category: "Lácteos",
+            price: 55.00,
+            image: "descargar.jpg",
+            description: "Mantequilla sin sal, marca Anchor. Presentación en caja con 20 unidades de 1 lb cada una. Elaborada con crema de leche pura, ideal para cocinar, hornear y untar. Conserva su sabor y textura incluso después de congelar.",
+            content: [
+                "20 lb de mantequilla (20 unidades de 1 lb)",
+                "Mantequilla sin sal",
+                "Textura cremosa y suave",
+                "Alto contenido de vitamina A"
+            ],
+            thumbnails: [
+                "descargar.jpg",
+                "descargar.jpg",
+                "descargar.jpg"
+            ]
+        },
+        {
+            id: 15,
+            name: "Huevos (cartón de 30 unidades)",
+            category: "Lácteos",
+            price: 10,
+            image: "images (2).jpg",
+            description: "Huevos frescos de gallina, en cartón sellado de 30 unidades. Fuente natural de proteínas de alta calidad, vitaminas y minerales. Perfectos para desayunos, postres y todo tipo de preparaciones culinarias.",
+            content: [
+                "30 huevos frescos de gallina",
+                "Empaque seguro y resistente",
+                "Alto contenido proteico",
+                "Ricos en vitaminas B12 y D"
+            ],
+            thumbnails: [
+                "images (2).jpg",
+                "images (2).jpg",
+                "images (2).jpg"
+            ],
+            sale: true
+        },
+        
+        // Conservas
+        {
+            id: 16,
+            name: "Tomate enlatado (caja de 24 latas)",
+            category: "Conservas",
+            price: 40,
+            image: "7157YdABWkL.jpg",
+            description: "Tomate pure enlatado, . Presentación en caja de 24 latas de 400 g cada una. Ingrediente básico para salsas, sopas y guisos. Conserva todo el sabor y nutrientes del tomate fresco.",
+            content: [
+                "24 latas de tomate de 400 g",
+                "Total: 9.6 kg de producto",
+                "Tomates en pure",
+                "Sin conservantes artificiales"
+            ],
+            thumbnails: [
+                "7157YdABWkL.jpg",
+                "7157YdABWkL.jpg",
+                "7157YdABWkL.jpg"
+            ]
+        },
+        {
+            id: 17,
+            name: "Frijoles negros cocidos (caja de 12 latas)",
+            category: "Conservas",
+            price: 28,
+            image: "71KQ-DF4DXL.jpg",
+            description: "Frijoles negros precocidos y listos para consumir. Presentación en caja de 12 latas de 500 g cada una. Ahorra tiempo en la cocina, solo calentar y servir. Conservan todo el sabor y nutrientes de los frijoles caseros.",
+            content: [
+                "12 latas de frijoles negros de 500 g",
+                "Total: 6 kg de producto",
+                "Precocidos y listos para consumir",
+                "Sin conservantes artificiales"
+            ],
+            thumbnails: [
+                "71KQ-DF4DXL.jpg",
+                "71KQ-DF4DXL.jpg",
+                "71KQ-DF4DXL.jpg"
+            ]
+        },
+        {
+            id: 18,
+            name: "Café molido (caja de 24 paquetes)",
+            category: "Conservas",
+            price: 70,
+            image: "descargar (2).jpg",
+            description: "Café molido 100% puro, marca Sello Rojo. Presentación en caja con 24 paquetes de 250 g cada uno. Aroma intenso y sabor equilibrado. Ideal para preparar el tradicional café cubano, colado o espresso.",
+            content: [
+                "24 paquetes de café de 250 g",
+                "Total: 6 kg de café molido",
+                "100% café puro",
+                "Aroma intenso y sabor equilibrado"
+            ],
+            thumbnails: [
+                "descargar (2).jpg",
+                "descargar (2).jpg",
+                "descargar (2).jpg"
+            ],
+            featured: true
+        },
+        
+        // Bebidas
+        {
+            id: 19,
+            name: "Refrescos enlatados (caja de 24)",
+            category: "Bebidas",
+            price: 27,
+            image: "E6f788487e27b42f1b6e4cc989ee0f3f0o.jpg",
+            description: "Refrescos enlatados Coca-Cola o Sprite. Presentación en caja de 24 latas de 355 ml cada una. Bebida carbonatada refrescante, perfecta para acompañar comidas o disfrutar en cualquier momento.",
+            content: [
+                "24 latas de refresco de 355 ml",
+                "Total: 8.52 litros",
+                "Sabores: Coca-Cola o Sprite",
+                "Empaque seguro y resistente"
+            ],
+            thumbnails: [
+                "E6f788487e27b42f1b6e4cc989ee0f3f0o.jpg",
+                "E6f788487e27b42f1b6e4cc989ee0f3f0o.jpg",
+                "E6f788487e27b42f1b6e4cc989ee0f3f0o.jpg"
+            ],
+            sale: true
+        },
+        {
+            id: 20,
+            name: "Ron Havana Club (caja de 12 botellas)",
+            category: "Bebidas",
+            price: 99.99,
+            image: "06c5b342-aa9a-4ec0-ae5c-76f8a0c99390.8f40cdd1027170f43e3d6fb59033930d.webp",
+            description: "Ron Havana Club Añejo. Presentación en caja de 12 botellas de 1 litro cada una. Envejecido en barricas de roble, con suave aroma a vainilla y madera. Ideal para disfrutar solo, en cocktails o en preparaciones culinarias.",
+            content: [
+                "12 botellas de ron de 1 litro",
+                "Total: 12 litros de ron",
+                "Grado alcohólico: 40% vol.",
+                "Envejecido en barricas de roble"
+            ],
+            thumbnails: [
+                "06c5b342-aa9a-4ec0-ae5c-76f8a0c99390.8f40cdd1027170f43e3d6fb59033930d.webp",
+                "06c5b342-aa9a-4ec0-ae5c-76f8a0c99390.8f40cdd1027170f43e3d6fb59033930d.webp",
+                "06c5b342-aa9a-4ec0-ae5c-76f8a0c99390.8f40cdd1027170f43e3d6fb59033930d.webp"
+            ],
+            featured: true
+        },
+        {
+            id: 21,
+            name: "Jugo en polvo Tang (caja de 6 paquetes)",
+            category: "Bebidas",
+            price: 22,
+            image: "762221056568.6.webp",
+            description: "Jugo en polvo Tang, sabores como mango o naranja. Presentación en caja con 12 cajas de 4.8 kg cada una. Rico en vitamina C, fácil de preparar y con delicioso sabor frutal. Ideal para toda la familia.",
+            content: [
+                "6 cajas de jugo en polvo de 4.8 kg",
+                "Total: 4.8 kg de producto",
+                "Sabores: mango o naranja",
+                "Rico en vitamina C"
+            ],
+            thumbnails: [
+                "762221056568.6.webp",
+                "762221056568.6.webp",
+                "762221056568.6.webp"
+            ]
+        },
+        
+        // Paquetes Especiales
+        {
+            id: 22,
+            name: "Planta Eléctrica ECOGEN SPG 2500",
+            category: "Paquetes Especiales",
+            price: 600.00,
+            image: "ECO PLANTA 25002.jpg",
+            description: "Generador eléctrico ECOGEN SPG 2500 de 2500W. Motor de 4 tiempos, silencioso y eficiente. Ideal para cortes de electricidad frecuentes.",
+            content: [
+                "Potencia: 2500W (2.5kW)",
+                "Motor: 4 tiempos OHV",
+                "Nivel de ruido: 68 dB",
+                "Capacidad tanque: 15 litros",
+                "Autonomía: 8-10 horas",
+                "Incluye kit de herramientas"
+            ],
+            thumbnails: [
+                "Planta Eléctrica ECOGEN SPG 2500",
+                "Planta Eléctrica ECOGEN SPG 2500",
+                "Planta Eléctrica ECOGEN SPG 2500"
+            ],
+            featured: true
+        },
+        {
+            id: 23,
+            name: "Planta Electrica A-iPower 12000 watt",
+            category: "Paquetes Especiales",
+            price: 749.99,
+            image: "3c2b7b_30b55a47d2f94a7a919558fac6d83201~mv2.avif",
+            description: "Generador eléctrico A-iPower de 12000W. Potencia suficiente para una casa completa. Motor robusto con arranque eléctrico.",
+            content: [
+                "Potencia: 12000W (12kW)",
+                "Motor: 4 tiempos OHV",
+                "Nivel de ruido: 74 dB",
+                "Capacidad tanque: 25 litros",
+                "Autonomía: 10-12 horas",
+                "Incluye ruedas para transporte"
+            ],
+            thumbnails: [
+                "3c2b7b_30b55a47d2f94a7a919558fac6d83201~mv2.avif",
+                "3c2b7b_30b55a47d2f94a7a919558fac6d83201~mv2.avif",
+                "3c2b7b_30b55a47d2f94a7a919558fac6d83201~mv2.avif"
+            ],
+            featured: true
+        },
+        {
+            id: 24,
+            name: "Generador Electrico ROTONAC 4000w",
+            category: "Paquetes Especiales",
+            price: 399.00,
+            image: "D_832137-MLM83601277233_042025-C.jpg",
+            description: "Generador eléctrico ROTONAC de 4000W. Equilibrio perfecto entre potencia y consumo. Ideal para electrodomésticos esenciales.",
+            content: [
+                "Potencia: 4000W (4kW)",
+                "Motor: 4 tiempos",
+                "Nivel de ruido: 70 dB",
+                "Capacidad tanque: 20 litros",
+                "Autonomía: 9-11 horas",
+                "Incluye certificado de garantía"
+            ],
+            thumbnails: [
+                "D_832137-MLM83601277233_042025-C.jpg",
+                "D_832137-MLM83601277233_042025-C.jpg",
+                "D_832137-MLM83601277233_042025-C.jpg"
+            ]
+        },
+        {
+            id: 25,
+            name: "Planta Eléctrica Toyama TG10000CXE-XP",
+            category: "Paquetes Especiales",
+            price: 699.00,
+            image: "TG10000CXE-XP_1-min-jpg.webp",
+            description: "Generador eléctrico Toyama de 10kVA. Potencia industrial con motor robusto y sistema de enfriamiento avanzado.",
+            content: [
+                "Potencia: 10000W (10kW)",
+                "Motor: 4 tiempos industrial",
+                "Nivel de ruido: 72 dB",
+                "Capacidad tanque: 30 litros",
+                "Autonomía: 12-14 horas",
+                "Incluye panel de control digital"
+            ],
+            thumbnails: [
+                "TG10000CXE-XP_1-min-jpg.webp",
+                "TG10000CXE-XP_1-min-jpg.webp",
+                "TG10000CXE-XP_1-min-jpg.webp"
+            ],
+            featured: true
+        },
+        {
+            id: 26,
+            name: "BICIPOWER EVOLUTION – Bucatti",
+            category: "Paquetes Especiales",
+            price: 999.99,
+            image: "bcpwr1000.png",
+            description: "Bicicleta eléctrica Bucatti Evolution. Diseño moderno con motor de alta potencia y batería de larga duración.",
+            content: [
+                "Motor: 750W",
+                "Batería: 48V 20Ah",
+                "Autonomía: 60-80 km",
+                "Velocidad máxima: 45 km/h",
+                "Peso máximo soportado: 120 kg",
+                "Incluye cargador rápido"
+            ],
+            thumbnails: [
+                "bcpwr1000.png",
+                "bcpwr1000.png",
+                "bcpwr1000.png"
+            ]
+        },
+        {
+            id: 27,
+            name: "BICIPOWER TOPMAQ LITHIUM 48V28AH",
+            category: "Paquetes Especiales",
+            price: 1149.99,
+            image: "1.jpg",
+            description: "Bicicleta eléctrica Topmaq con batería de litio de alta capacidad. Perfecta para trayectos urbanos y suburbanos.",
+            content: [
+                "Motor: 1000W",
+                "Batería: 48V 28Ah",
+                "Autonomía: 80-100 km",
+                "Velocidad máxima: 50 km/h",
+                "Suspensión delantera",
+                "Frenos de disco hidráulicos"
+            ],
+            thumbnails: [
+                "1.jpg",
+                "1.jpg",
+                "1.jpg"
+            ],
+            featured: true
+        },
+        {
+            id: 28,
+            name: "Moto eléctrica Unizuki Rayan 40Ah",
+            category: "Paquetes Especiales",
+            price: 1299.99,
+            image: "Moto-unizuki-rayan-azul.webp",
+            description: "Motocicleta eléctrica Unizuki Rayan con batería de 40Ah. Cero emisiones, bajo mantenimiento y alto rendimiento.",
+            content: [
+                "Motor: 3000W",
+                "Batería: 72V 40Ah",
+                "Autonomía: 100-120 km",
+                "Velocidad máxima: 70 km/h",
+                "Peso máximo soportado: 150 kg",
+                "Incluye cargador rápido y kit de herramientas"
+            ],
+            thumbnails: [
+                "Moto-unizuki-rayan-azul.webp",
+                "Moto-unizuki-rayan-azul.webp",
+                "Moto-unizuki-rayan-azul.webp"
+            ]
+        },
+        {
+            id: 29,
+            name: "SUZUKI GN 125",
+            category: "Paquetes Especiales",
+            price: 2299.99,
+            image: "gn125f.png",
+            description: "Motocicleta Suzuki GN 125. Clásico diseño con fiabilidad comprobada. Bajo consumo y alto rendimiento.",
+            content: [
+                "Motor: 125cc 4T",
+                "Transmisión: 5 velocidades",
+                "Tanque: 12 litros",
+                "Consumo: 40 km/l",
+                "Peso máximo soportado: 150 kg",
+                "Incluye kit de herramientas y manual"
+            ],
+            thumbnails: [
+                "gn125f.png",
+                "gn125f.png",
+                "gn125f.png"
+            ],
+            featured: true
+        },
+        {
+            id: 30,
+            name: "SUZUKI AX 100",
+            category: "Paquetes Especiales",
+            price: 1800,
+            image: "suzuki-ax-100-ax100-motor-2-tiempos-motos-0-km-2014-7589-MLA5244320131_102013-F.jpg",
+            description: "Motocicleta Suzuki AX 100. Legendaria por su durabilidad y fácil mantenimiento. Ideal para terrenos variados.",
+            content: [
+                "Motor: 100cc 2T",
+                "Transmisión: 4 velocidades",
+                "Tanque: 10 litros",
+                "Consumo: 35 km/l",
+                "Peso máximo soportado: 130 kg",
+                "Incluye kit de herramientas y manual"
+            ],
+            thumbnails: [
+                "suzuki-ax-100-ax100-motor-2-tiempos-motos-0-km-2014-7589-MLA5244320131_102013-F.jpg",
+                "suzuki-ax-100-ax100-motor-2-tiempos-motos-0-km-2014-7589-MLA5244320131_102013-F.jpg",
+                "suzuki-ax-100-ax100-motor-2-tiempos-motos-0-km-2014-7589-MLA5244320131_102013-F.jpg"
+            ]
+        },
+        {
+            id: 31,
+            name: "Pañales (paquete de 50 unidades)",
+            category: "Paquetes Especiales",
+            price: 25,
+            image: "651172.jpg",
+            description: "Pañales desechables Pampers, talla M. Paquete con 50 unidades. Absorción superior que mantiene la piel seca hasta por 12 horas. Cintura elástica y ajuste anatómico para mayor comodidad del bebé.",
+            content: [
+                "50 pañales desechables",
+                "Talla M (6-11 kg)",
+                "Absorción superior",
+                "Protección contra fugas"
+            ],
+            thumbnails: [
+                "651172.jpg",
+                "651172.jpg",
+                "651172.jpg"
+            ]
+        },
+        {
+            id: 32,
+            name: "Detergente en polvo (caja de 4 sacos)",
+            category: "Paquetes Especiales",
+            price: 70,
+            image: "00750043515907L.webp",
+            description: "Detergente en polvo Ariel. Presentación en caja con 4 sacos de 5 kg cada uno. Elimina las manchas difíciles incluso en agua fría. Protege los colores y deja la ropa con agradable fragancia.",
+            content: [
+                "4 sacos de detergente de 5 kg",
+                "Total: 20 kg de detergente",
+                "Elimina manchas difíciles",
+                "Funciona incluso en agua fría"
+            ],
+            thumbnails: [
+                "00750043515907L.webp",
+                "00750043515907L.webp",
+                "00750043515907L.webp"
+            ],
+            featured: true
+        },
+        {
+            id: 33,
+            name: "Pasta dental (caja de 6 unidades)",
+            category: "Paquetes Especiales",
+            price: 12,
+            image: "descargar (3).jpg",
+            description: "Pasta dental Colgate. Presentación en caja con 6 tubos estándar. Protección contra caries, fortalece el esmalte dental y refresca el aliento. Fórmula con flúor para una limpieza profunda.",
+            content: [
+                "6 tubos de pasta dental",
+                "Protección contra caries",
+                "Fortalece el esmalte dental",
+                "Frescor prolongado"
+            ],
+            thumbnails: [
+                "descargar (3).jpg",
+                "descargar (3).jpg",
+                "descargar (3).jpg"
+            ]
+        },
+        
+        // Materiales de Construcción
+        {
+            id: 34,
+            name: "Saco de cemento (42.5 kg)",
+            category: "Materiales de Construcción",
+            price: 59.99,
+            image: "28062023131434.webp",
+            description: "Cemento gris de alta resistencia, ideal para construcciones y reparaciones. Presentación en saco de 42.5 kg. Cumple con los estándares de calidad internacionales.",
+            content: [
+                "42.5 kg de cemento gris",
+                "Alta resistencia",
+                "Ideal para construcciones",
+                "Empaque resistente"
+            ],
+            thumbnails: [
+                "28062023131434.webp",
+                "28062023131434.webp",
+                "28062023131434.webp"
+            ],
+            featured: true
+        }
+    ];
+
+    // Funciones del carrito
+    function getCart() {
+        const cart = JSON.parse(localStorage.getItem('cubamax-cart'));
+        return cart || [];
+    }
+
+    function saveCart(cart) {
+        localStorage.setItem('cubamax-cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        const cart = getCart();
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cartCount').textContent = count;
+    }
+
+    // Función principal para agregar al carrito
+    function addToCart(productName, price, image) {
+        const cart = getCart();
+        const existingProduct = cart.find(item => item.name === productName);
+        
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            cart.push({
+                name: productName,
+                price: price,
+                quantity: 1,
+                image: image
+            });
+        }
+        
+        saveCart(cart);
+        showToast(`${productName} agregado al carrito`, 'success');
+    }
+
+    // Funciones para el modal
+    function updateModalQuantity(change) {
+        modalQuantity += change;
+        if (modalQuantity < 1) modalQuantity = 1;
+        document.getElementById('modal-quantity').value = modalQuantity;
+    }
+
+    function addModalToCart() {
+        if (currentModalProduct) {
+            for (let i = 0; i < modalQuantity; i++) {
+                addToCart(currentModalProduct, currentModalPrice, currentModalImage);
+            }
+            $('#productModal').modal('hide');
+            modalQuantity = 1;
+        }
+    }
+
+    // Mostrar notificación toast
+    function showToast(message, type = 'primary') {
+        const toast = document.createElement('div');
+        toast.className = `toast show align-items-center text-white bg-${type} border-0`;
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.zIndex = '1060';
+        
+        toast.innerHTML = `
+            <div class="d-flex">
+                <div class="toast-body">
+                    ${message}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        `;
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+
+    // Ir al checkout
+    function goToCheckout() {
+        if (getCart().length > 0) {
+            window.location.href = 'Checkout.html';
+        } else {
+            showToast('El carrito está vacío', 'warning');
+        }
+    }
+
+    // Función para filtrar productos por categoría
+    function filterByCategory(category) {
+        currentCategory = category;
+        if (category === 'all') {
+            filteredProducts = [...allProducts];
+        } else {
+            filteredProducts = allProducts.filter(product => product.category === category);
+        }
+        
+        // Actualizar navegación de categorías
+        document.querySelectorAll('.category-nav-item, .list-group-item').forEach(item => {
+            if (item.getAttribute('data-category') === category) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+        
+        // Renderizar todos los productos de la categoría
+        renderProducts(filteredProducts);
+        
+        // Actualizar contador de productos
+        document.getElementById('total-products').textContent = filteredProducts.length;
+        document.getElementById('showing-products').textContent = filteredProducts.length;
+    }
+
+    // Función para renderizar productos
+    function renderProducts(products) {
+        const container = document.getElementById('products-container');
+        container.innerHTML = '';
+        
+        products.forEach(product => {
+            const productHTML = `
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="${Math.random() * 300}">
+                    <div class="card h-100">
+                        ${product.featured ? '<span class="featured-badge">' + (product.sale ? 'Oferta' : 'Destacado') + '</span>' : ''}
+                        <div class="product-image">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <a href="#" class="product-quick-view" data-bs-toggle="modal" data-bs-target="#productModal" 
+                               data-product-id="${product.id}">Ver detalles</a>
+                        </div>
+                        <div class="card-body">
+                            <span class="category-badge">${product.category}</span>
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$${product.price.toFixed(2)}</span>
+                                <button class="btn btn-sm btn-outline-primary" 
+                                        onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', productHTML);
+        });
+    }
+
+    // Función para cargar datos del producto en el modal
+    function loadProductModal(productId) {
+        const product = allProducts.find(p => p.id == productId);
+        if (!product) return;
+        
+        currentModalProduct = product.name;
+        currentModalPrice = product.price;
+        currentModalImage = product.image;
+        modalQuantity = 1;
+        
+        document.getElementById('modal-product-title').textContent = product.name;
+        document.getElementById('modal-product-price').textContent = `$${product.price.toFixed(2)}`;
+        document.getElementById('modal-product-description').textContent = product.description;
+        document.getElementById('modal-product-img').src = product.image;
+        document.getElementById('modal-quantity').value = '1';
+        
+        // Cargar contenido del producto
+        const contentList = document.getElementById('modal-product-content');
+        contentList.innerHTML = '';
+        product.content.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            contentList.appendChild(li);
+        });
+        
+        // Cargar miniaturas de TODOS los productos si estamos en "Todas las categorías" o de la misma categoría si no
+        const thumbnailsContainer = document.getElementById('modal-thumbnails');
+        thumbnailsContainer.innerHTML = '';
+        
+        let productsToShow = [];
+        if (currentCategory === 'all') {
+            productsToShow = [...allProducts];
+        } else {
+            productsToShow = allProducts.filter(p => p.category === product.category);
+        }
+        
+        productsToShow.forEach((prod, index) => {
+            const thumbImg = document.createElement('img');
+            thumbImg.src = prod.image;
+            thumbImg.className = 'gallery-thumb' + (prod.id === product.id ? ' active' : '');
+            thumbImg.alt = prod.name;
+            thumbImg.title = prod.name;
+            thumbImg.onclick = function() {
+                // Cambiar el producto principal al hacer clic en la miniatura
+                document.getElementById('modal-product-img').src = prod.image;
+                document.getElementById('modal-product-title').textContent = prod.name;
+                document.getElementById('modal-product-price').textContent = `$${prod.price.toFixed(2)}`;
+                document.getElementById('modal-product-description').textContent = prod.description;
+                
+                // Actualizar contenido
+                const contentList = document.getElementById('modal-product-content');
+                contentList.innerHTML = '';
+                prod.content.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    contentList.appendChild(li);
+                });
+                
+                // Actualizar estado activo de las miniaturas
+                document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Actualizar variables globales del producto actual
+                currentModalProduct = prod.name;
+                currentModalPrice = prod.price;
+                currentModalImage = prod.image;
+                modalQuantity = 1;
+                document.getElementById('modal-quantity').value = '1';
+            };
+            thumbnailsContainer.appendChild(thumbImg);
+        });
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializar todos los productos
+        allProducts = productsData;
+        filteredProducts = [...allProducts];
+        
+        // Cargar todos los productos inicialmente
+        filterByCategory('all');
+        
+        updateCartCount();
+        
+        // Configurar el modal
+        $('#productModal').on('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const productId = button.getAttribute('data-product-id');
+            loadProductModal(productId);
+        });
+
+        // Configurar navegación activa
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        // Configurar navegación por categorías
+        document.querySelectorAll('.category-nav-item, .list-group-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.getAttribute('data-category');
+                filterByCategory(category);
+            });
+        });
+        
+        // Configurar filtros
+        document.getElementById('apply-filters').addEventListener('click', function() {
+            const priceRange = parseFloat(document.getElementById('price-range').value);
+            const featuredOnly = document.getElementById('featured-filter').checked;
+            const saleOnly = document.getElementById('sale-filter').checked;
+            
+            filteredProducts = allProducts.filter(product => {
+                if (currentCategory !== 'all' && product.category !== currentCategory) {
+                    return false;
+                }
+                
+                if (priceRange > 0 && product.price > priceRange) {
+                    return false;
+                }
+                
+                if (featuredOnly && !product.featured) {
+                    return false;
+                }
+                
+                if (saleOnly && !product.sale) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            renderProducts(filteredProducts);
+            document.getElementById('total-products').textContent = filteredProducts.length;
+            document.getElementById('showing-products').textContent = filteredProducts.length;
+        });
+        
+        // Verificar si hay una categoría en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        if (categoryParam) {
+            filterByCategory(categoryParam);
+        }
+    });
+</script>
+
+</body>
+</html>
